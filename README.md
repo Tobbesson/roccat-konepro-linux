@@ -17,7 +17,7 @@ Then run: `make` or `make static` for statically linked
 `-d x` // x = 50-19,000(in increments of 50) // Change DPI(Currently only Switch 0 can be changed)\
 `-ds x` // x = 0-4 // Change DPI switcher\
 `-default` // Factory reset device\
-`-dbt x` // x = 0-10 // Sets debounce time (Global setting not profile specific)\
+`-dbt x` // x = 0-10 // Sets debounce time (Global setting not profile specific)
 
 Example:\
 `./konepro -l 255 0 255 -r 0 255 0 -lm 1` // Sets Profile 0 left click to purple, right click to green and LED mode to fully lit.\
