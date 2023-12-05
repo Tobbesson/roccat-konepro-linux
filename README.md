@@ -5,7 +5,6 @@ Install dependency: https://libusb.info/ \
 Then run: `make` or `make static` for statically linked
 # Usage
 `./konepro ARGUMENTS`
-
 # Arguments and example
 `-prf x` // x = 0-4 // Specify which profile to change. Defaults to profile 0 if not specified.\
 `-l R G B` // Change RGB(Range of 0-255) of Left click\
