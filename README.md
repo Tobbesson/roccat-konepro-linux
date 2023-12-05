@@ -4,7 +4,7 @@ Change dpi, lighting and stuff for roccat kone pro mouse in Linux
 Install dependency: https://libusb.info/ \
 Then run: `make`
 # Usage
-Run as sudo or setup a udev rule.
+Run as sudo or setup a udev rule.\
 `./konepro ARGUMENTS`
 # Arguments and example
 `-prf x` // x = 0-4 // Specify which profile to change. Defaults to profile 0 if not specified.\
