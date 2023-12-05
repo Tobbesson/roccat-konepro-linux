@@ -1,4 +1,4 @@
-# roccat-konepro
+# roccat-konepro-linux
 Change dpi, lighting and stuff for roccat kone pro mouse in Linux
 
 # Usage
