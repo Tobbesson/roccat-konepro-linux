@@ -10,10 +10,12 @@ Then run: `make` or `make static` for statically linked
 `-l R G B` // Change RGB(Range of 0-255) of Left click\
 `-r R G B` // Change RGB(Range of 0-255) of Right click\
 `-lm x` // x = 0-4,9,10 (0=Off,1=Fully lit,2=Blinking,3=Breathing,4=Heartbeat,9=Aimo Intelligent,10=Wave) // Change LED mode\
+`-lb x` // x = 0-255 // Change LED brightness\
 `-ls x` // x = 1-11 // Change cycle speed of some LED modes\
 `-list profile` // profile = 0-4 // List current values of profile in question\
 `-p x` // x = 0-3 (0=125,1=250,2=500,3=1000)// Change Polling rate\
-`-d x` // x = 50-19,000(in increments of 50) // Change DPI\
+`-d x` // x = 50-19,000(in increments of 50) // Change DPI(Currently only Switch 0 can be changed)\
+`-ds x` // x = 0-4 // Change DPI switcher\
 `-default` // Factory reset device\
 `-dbt x` // x = 0-10 // Sets debounce time (Global setting not profile specific)\
 
