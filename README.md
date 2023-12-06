@@ -5,7 +5,7 @@ Install dependency: https://libusb.info/ \
 Then run: `make`
 # Usage
 Run as sudo or setup a udev rule.\
-`./konepro ARGUMENTS`
+`konepro ARGUMENTS`
 # Arguments and example
 `-prf x` // x = 0-4 // Specify which profile to change. Defaults to profile 0 if not specified.\
 `-l R G B` // Change RGB(Range of 0-255) of Left click\
@@ -21,6 +21,6 @@ Run as sudo or setup a udev rule.\
 `-dbt x` // x = 0-10 // Sets debounce time in milliseconds (Global setting not profile specific)
 
 Example:\
-`./konepro -l 255 0 255 -r 0 255 0 -lm 1` // Sets Profile 0 left click to purple, right click to green and LED mode to fully lit.\
-`./konepro -prf 1 -l 255 0 0 -lm 2 -dpi 800` // Sets Profile 1 left click to red, LED mode to blinking and DPI to 800\
-`./konepro -list 3` // list settings in profile 3.
+`konepro -l 255 0 255 -r 0 255 0 -lm 1` // Sets Profile 0 left click to purple, right click to green and LED mode to fully lit.\
+`konepro -prf 1 -l 255 0 0 -lm 2 -dpi 800` // Sets Profile 1 left click to red, LED mode to blinking and DPI to 800\
+`konepro -list 3` // list settings in profile 3.
