@@ -10,7 +10,7 @@ Run as sudo or setup a udev rule.\
 `-prf x` // x = 0-4 // Specify which profile to change. Defaults to profile 0 if not specified.\
 `-l R G B` // Change RGB(Range of 0-255) of Left click\
 `-r R G B` // Change RGB(Range of 0-255) of Right click\
-`-lm x` // x = 0-4,9,10 (0=Off,1=Fully lit,2=Blinking,3=Breathing,4=Heartbeat,9=Aimo Intelligent,10=Wave) // Change LED mode\
+`-lm x` // x = 0-4,9,10 (0=Off, 1=Fully lit, 2=Blinking, 3=Breathing, 4=Heartbeat, 9=Aimo Intelligent ,10=Wave) // Change LED mode\
 `-lb x` // x = 0-255 // Change LED brightness\
 `-ls x` // x = 1-11 // Change cycle speed of some LED modes\
 `-list profile` // profile = 0-4 // List current values of profile in question\
