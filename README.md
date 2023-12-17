@@ -12,7 +12,7 @@ make
 ```
 # Usage
 Run as sudo or setup a udev rule.\
-`./konepro ARGUMENTS` if you wanna it from current directory \
+`./konepro ARGUMENTS` if you wanna run it from current directory \
 `konepro ARGUMENTS` if the file is in /bin or similar folder.
 # Arguments and example
 `-prf x` // x = 0-4 // Specify which profile to change. Defaults to profile 0 if not specified.\
