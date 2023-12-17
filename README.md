@@ -1,10 +1,14 @@
 # roccat-konepro-linux
 Change dpi, lighting and stuff for roccat kone pro mouse in Linux
-# Build
-Install dependency: https://libusb.info/ You can probably download it using your distros package managert\
-Then run: \
-`git clone https://github.com/Tobbesson/roccat-konepro-linux.git \
-test`
+# Dependencies
+libusb // https://libusb.info/ You can probably download it using your distros package manager \
+gcc // You can probably download it using your distros package manager
+#Build
+```
+git clone https://github.com/Tobbesson/roccat-konepro-linux.git
+cd roccat-konepro-linux/
+make
+```
 # Usage
 Run as sudo or setup a udev rule.\
 `konepro ARGUMENTS`
