@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
     currentSettings[67] = sum % 256; // Checksum
     currentSettings[68] = (sum - currentSettings[67]) / 256;
 
-    libusb_control_transfer(devHandle,0x21,0x09,0x0306,0x0003,currentSettings,0x0069,10000);
+    libusb_control_transfer(devHandle,0x21,0x09,0x0306,0x0003,currentSettings,0x0045,10000);
     
     errCheck = closeDevice(devHandle);
     if(errCheck != 0)
@@ -250,14 +250,14 @@ int setDefaultState(libusb_device_handle *handle)
     if(errCheck != 0)
     {
         printf("convertToDataArray failed\n");
-        closeDevice(handle);
+        //closeDevice(handle);
         return 1;
     }
 
     libusb_control_transfer(handle,0x21,0x09,0x0309,0x0003,data,0x0009,10000);
     
     free(data);
-    closeDevice(handle);
+    //closeDevice(handle); -- Device is closed after the function is called in the main function.
     return 0;
 }
 
