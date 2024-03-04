@@ -63,13 +63,36 @@ int main(int argc, char *argv[])
 
 
     struct profile profiles;
-    getProfileData(devHandle,0,profiles.profile1);
-    getProfileData(devHandle,1,profiles.profile2);
-    getProfileData(devHandle,2,profiles.profile3);
-    getProfileData(devHandle,3,profiles.profile4);
-    getProfileData(devHandle,4,profiles.profile5);
+    errCheck = getProfileData(devHandle,0,profiles.profile1);
+    if(errCheck != 0){
+        printf("getProfileData Failed\n");
+        goto FailState;
+    }
+    errCheck = getProfileData(devHandle,1,profiles.profile2);
+    if(errCheck != 0){
+        printf("getProfileData Failed\n");
+        goto FailState;
+    }
+    errCheck = getProfileData(devHandle,2,profiles.profile3);
+    if(errCheck != 0){
+        printf("getProfileData Failed\n");
+        goto FailState;
+    }
+    errCheck = getProfileData(devHandle,3,profiles.profile4);
+    if(errCheck != 0){
+        printf("getProfileData Failed\n");
+        goto FailState;
+    }
+    errCheck = getProfileData(devHandle,4,profiles.profile5);
+    if(errCheck != 0){
+        printf("getProfileData Failed\n");
+        goto FailState;
+    }
     profiles.dbt = getDebounceTime(devHandle);
-
+    if(profiles.dbt < 0){
+        printf("getDebounceTime Failed\n");
+        goto FailState;
+    }
     
     uint8_t *currentSettings;
     switch(checkProfile)
@@ -191,8 +214,12 @@ int main(int argc, char *argv[])
         sum += currentSettings[i];
     currentSettings[67] = sum % 256; // Checksum
     currentSettings[68] = (sum - currentSettings[67]) / 256;
-
-    libusb_control_transfer(devHandle,0x21,0x09,0x0306,0x0003,currentSettings,0x0045,10000);
+    
+    int errorCheck = libusb_control_transfer(devHandle,0x21,0x09,0x0306,0x0003,currentSettings,0x0045,10000);
+    if(errorCheck < 0 ){
+        printf("Control transfer failed\n");
+        goto FailState;
+    }
     
     errCheck = closeDevice(devHandle);
     if(errCheck != 0)
@@ -254,8 +281,11 @@ int setDefaultState(libusb_device_handle *handle)
         return 1;
     }
 
-    libusb_control_transfer(handle,0x21,0x09,0x0309,0x0003,data,0x0009,10000);
-    
+    int errorCheck = libusb_control_transfer(handle,0x21,0x09,0x0309,0x0003,data,0x0009,10000);
+    if(errorCheck < 0){
+        printf("Control Transfer Failed\n");
+        return 1;
+    }
     free(data);
     //closeDevice(handle); -- Device is closed after the function is called in the main function.
     return 0;
@@ -343,8 +373,11 @@ int getProfileData(libusb_device_handle *handle, int profile, uint8_t *data)
     Data Fragment: 04 00 80 00
    */
 
-    libusb_control_transfer(handle,0x21,0x09,0x0304,0x0003,profileData,0x0004,1000); //SPECIFY WHICH PROFILE I WANT TO RETRIEVE
-    
+    int errorCheck = libusb_control_transfer(handle,0x21,0x09,0x0304,0x0003,profileData,0x0004,1000); //SPECIFY WHICH PROFILE I WANT TO RETRIEVE
+    if(errorCheck < 0){
+        printf("Control transfer Failed\n");
+        return 1;
+    }
     /*
     Setup Data
     bmRequestType: 0xa1
@@ -356,7 +389,11 @@ int getProfileData(libusb_device_handle *handle, int profile, uint8_t *data)
     wLength: 69
     */
     
-    libusb_control_transfer(handle,0xa1,0x01,0x0306,0x0003,data,0x0045,1000); //RETRIEVE PROFILE DATA
+    errorCheck = libusb_control_transfer(handle,0xa1,0x01,0x0306,0x0003,data,0x0045,1000); //RETRIEVE PROFILE DATA
+    if(errorCheck < 0){
+        printf("Control transfer Failed\n");
+        return 1;
+    }
     free(profileData);
     return 0;
 
@@ -431,8 +468,11 @@ int setDebounceTime(libusb_device_handle *handle, uint8_t dbT)
         sum += debounceData[i];
     }
     debounceData[11] = sum; // Chekcsum
-    libusb_control_transfer(handle,0x21,0x09,0x0311,0x0003,debounceData,0x000d,1000);
-
+    int errorCheck = libusb_control_transfer(handle,0x21,0x09,0x0311,0x0003,debounceData,0x000d,1000);
+    if(errorCheck < 0){
+        printf("Control Transfer Failed\n");
+        return 1;
+    }
     free(debounceData);
     return 0;
 }
@@ -449,7 +489,10 @@ uint8_t getDebounceTime(libusb_device_handle *handle)
     wIndex: 3
     wLength: 13
     */
-   libusb_control_transfer(handle,0xa1,0x01,0x0311,0x0003,dbtArray,0x000d,1000);
-
+   int errorCheck = libusb_control_transfer(handle,0xa1,0x01,0x0311,0x0003,dbtArray,0x000d,1000);
+   if(errorCheck < 0){
+        printf("Control Transfer Failed\n");
+       return -1;
+   }
    return dbtArray[2];
 }
