@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
         goto FailState;
     }
     profiles.dbt = getDebounceTime(devHandle);
-    if(profiles.dbt < 0){
+    if(profiles.dbt == 11){
         printf("getDebounceTime Failed\n");
         goto FailState;
     }
@@ -204,8 +204,8 @@ int main(int argc, char *argv[])
                 return 1;
             }
 
-            closeDevice(devHandle);
-            return 0;
+            //closeDevice(devHandle);
+            //return 0;
         }
         
     }
@@ -492,7 +492,7 @@ uint8_t getDebounceTime(libusb_device_handle *handle)
    int errorCheck = libusb_control_transfer(handle,0xa1,0x01,0x0311,0x0003,dbtArray,0x000d,1000);
    if(errorCheck < 0){
         printf("Control Transfer Failed\n");
-       return -1;
+       return 11;
    }
    return dbtArray[2];
 }
