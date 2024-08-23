@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
         printf("-ls value // LED Speed (1 to 11)\n");
         printf("-list profile // List Profile Settings (0 to 4)\n");
         printf("-p value // Polling Rate (0 to 3; 125,250,500,1000)\n");
-        printf("-d dpi // DPI (minimum: 50, maximum 19,000, increments of 50)\n-ds value // DPI Switcher (0 to 4)\n");
+        printf("-d dpi switch // DPI (minimum: 50, maximum 19,000, increments of 50), switch(0 to 4)(Defaults to 0 if not spcified)\n-ds value // DPI Switcher (0 to 4)\n");
         printf("-prf value // Profile to change (value 0 to 4) Defaults to 0 if omitted\n");
         printf("-default // Factory reset Device\n");
         printf("-dbt value // Sets Debounce Time in milliseconds (value 0 to 10)\n");
