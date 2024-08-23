@@ -24,7 +24,7 @@ Run as sudo or setup a udev rule.\
 `-ls x` // x = 1-11 // Change cycle speed of some LED modes\
 `-list profile` // profile = 0-4 // List current values of profile in question\
 `-p x` // x = 0-3 (0=125,1=250,2=500,3=1000)// Change Polling rate\
-`-d x` // x = 50-19,000(in increments of 50) // Change DPI(Currently only Switch 0 can be changed)\
+`-d x s` // x = 50-19,000(in increments of 50), s = 0-4(Switch you want to change) // Change DPI of Switch s (Defaults to 0 if not specified)\
 `-ds x` // x = 0-4 // Change DPI switcher\
 `-default` // Factory reset device\
 `-dbt x` // x = 0-10 // Sets debounce time in milliseconds (Global setting not profile specific)
