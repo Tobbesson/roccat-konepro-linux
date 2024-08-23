@@ -161,10 +161,21 @@ int main(int argc, char *argv[])
         }
         else if(!strcmp(argv[i], "-d") && i+1 < argc)
         {
-            unsigned int dpi = (unsigned int)strtol(argv[i+1], NULL, 10); // DPI (switch 0, haven't added support to change the others yet)
+
+			int switchMod = 0;
+			if(argc > i+2 && argv[i+2][0] <= '4' && argv[i+2][0] >= '0'){ // Decide which switch to change
+				unsigned int swtch = (unsigned int)strtol(argv[i+2], NULL, 10);
+				if(swtch > 4){
+					printf("Invalid DPI switch!\n");
+					closeDevice(devHandle);
+					return 0;
+				}
+				switchMod = 2 * swtch; 
+			}
+            unsigned int dpi = (unsigned int)strtol(argv[i+1], NULL, 10); 
             if(dpi % 50 != 0 || dpi > 19000) goto FailState;
-            currentSettings[7] = (uint8_t)((dpi/50) % 256);                 // Switch 1 to 4 is +2 elements from the first byte of the previous Switch
-            currentSettings[8] = (uint8_t)(((dpi/50)-currentSettings[7]) / 256);
+            currentSettings[7+switchMod] = ((dpi/50) % 256);                 // Switch 1 to 4 is +2 elements from the first byte of the previous Switch
+            currentSettings[8+switchMod] = (((dpi/50)-currentSettings[7+switchMod]) / 256);
             
         }
         else if(!strcmp(argv[i], "-ds") && i+1 < argc)
