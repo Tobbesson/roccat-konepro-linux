@@ -26,11 +26,11 @@ Run as sudo or setup a udev rule.\
 `-list profile` // profile = 0-4 // List current values of profile in question\
 `-p x` // x = 0-3 (0=125,1=250,2=500,3=1000)// Change Polling rate\
 `-d x s` // x = 50-19,000(in increments of 50), s = 0-4(Switch you want to change) // Change DPI of Switch s (Defaults to 0 if not specified)\
-`-ds x` // x = 0-4 // Change DPI switcher\
+`-ds x` // x = 0-4 // Change Active DPI switch\
 `-default` // Factory reset device\
 `-dbt x` // x = 0-10 // Sets debounce time in milliseconds (Global setting not profile specific)
 
 Example:\
 `konepro -l 255 0 255 -r 0 255 0 -lm 1` // Sets Profile 0 left click to purple, right click to green and LED mode to fully lit.\
-`konepro -prf 1 -l 255 0 0 -lm 2 -d 800` // Sets Profile 1 left click to red, LED mode to blinking and DPI to 800\
+`konepro -prf 1 -l 255 0 0 -lm 2 -d 800 1` // Sets Profile 1 left click to red, LED mode to blinking and Switch 1's DPI to 800\
 `konepro -list 3` // list settings in profile 3.
